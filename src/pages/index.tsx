@@ -2,6 +2,8 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { useState, useEffect } from 'react'
 import GameList from '@/components/GameList'
+import Sidebar from '@/components/Sidebar'
+import CurrentlyPlaying from '@/components/CurrentlyPlaying'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -9,12 +11,15 @@ export default function Home() {
   const [userGameList, setGameList] = useState([]);
   const userRegisteredVideoGames = [
     {
+      id: 1,
       title: "Guilty Gear"
     },
     {
+      id: 2,
       title: "Guilty Gear"
     },
     {
+      id: 3,
       title: "Guilty Gear"
     },
   ];
@@ -27,15 +32,21 @@ export default function Home() {
   });
   return (
     <main
-      className="w-full"
+      className="w-full month-bg"
     >
-      <div className={`flex min-h-screen flex-col items-center justify-between p-24 bg-gray ${inter.className}`}>
-        <header className='w-full'>
+      <div className={` flex min-h-screen flex-col items-center justify-between p-24 bg-[#0000004d] ${inter.className}`}>
+        <header className='w-full flex flex-col'>
+          <span className="text-[30px]">
           GAMELIBX
+          </span>
+          <span>Solo Enfocate en jugar 4 Titulos a la vez para mayor disfrute</span>
         </header>
-        <GameList name="Victor X" titlesList={userGameList}></GameList>
-        <input onChange={updateNumber}></input>
-        <button onClick={updateNumber}>Actualiza number {myNumber}</button>
+        <div className='w-full'>
+          <CurrentlyPlaying></CurrentlyPlaying>
+          <GameList name="Victor X" titlesList={userGameList}></GameList>
+          <input onChange={updateNumber}></input>
+          <button onClick={updateNumber}>Actualiza number {myNumber}</button>
+        </div>
 
       </div>
 

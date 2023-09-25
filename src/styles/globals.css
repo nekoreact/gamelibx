@@ -25,3 +25,15 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.sidebar {
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+}
+
+.month-bg {
+  background-image: url("https://www.pockettactics.com/wp-content/sites/pockettactics/2023/02/digimon-wallpaper-4.jpg");
+}
