@@ -1,30 +1,53 @@
+import axios from 'axios'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { useState, useEffect } from 'react'
 import GameList from '@/components/GameList'
 import Sidebar from '@/components/Sidebar'
+import Button from '@/components/Button'
 import CurrentlyPlaying from '@/components/CurrentlyPlaying'
 const inter = Inter({ subsets: ['latin'] })
+const userRegisteredVideoGames = [
+  {
+    id: 1,
+    title: "Guilty Gear"
+  },
+  {
+    id: 2,
+    title: "Guilty Gear"
+  },
+  {
+    id: 3,
+    title: "Guilty Gear"
+  },
+];
 
 export default function Home() {
   const [myNumber, setNumber] = useState(0);
   const [userGameList, setGameList] = useState([]);
-  const userRegisteredVideoGames = [
-    {
-      id: 1,
-      title: "Guilty Gear"
-    },
-    {
-      id: 2,
-      title: "Guilty Gear"
-    },
-    {
-      id: 3,
-      title: "Guilty Gear"
-    },
-  ];
+  
   const updateNumber = (event: any) => {
     setNumber(event.target.value)
+  }
+
+  const createNewManga = () => {
+    // fetch('http://localhost:3000/api/post', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     name: 'Tokyo Ghoul',
+    //     author: 'Sui Ishida'
+    //   })
+    // }).then(response => {
+    //   alert("funciona")
+    //   console.log(response.json());
+    // })
+    axios.post('http://localhost:3000/api/post', {
+      name: 'Tokyo Ghoul',
+      author: 'Sui Ishida'
+    }).then((response) => {
+      console.log(response);
+    })
   }
 
   useEffect(() => {
@@ -34,12 +57,13 @@ export default function Home() {
     <main
       className="w-full month-bg"
     >
-      <div className={` flex min-h-screen flex-col items-center justify-between p-24 bg-[#0000004d] ${inter.className}`}>
+      <div className={`flex min-h-screen flex-col items-center justify-between p-10 bg-[#0000004d] ${inter.className}`}>
         <header className='w-full flex flex-col'>
-          <span className="text-[30px]">
-          GAMELIBX
-          </span>
-          <span>Solo Enfocate en jugar 4 Titulos a la vez para mayor disfrute</span>
+          <div className="text-[30px] flex w-full justify-between">
+            <h1>GAMELIBX</h1>
+            <Button title="Nuevo Titulo" onClickFunction={createNewManga}></Button>
+          </div>
+          <span className='mb-4'>Solo Enfocate en jugar 4 Titulos a la vez para mayor disfrute</span>
         </header>
         <div className='w-full'>
           <CurrentlyPlaying></CurrentlyPlaying>

@@ -5,7 +5,7 @@ export default function GameList ({name, image, titlesList} : GameProps ) {
             {name}
             <ul>
                 {titlesList.map((title) => (
-                    <li className="w-full p-4 bg-white text-black mb-2" key={title.title}>{title.title}</li>
+                    <li className="w-full p-4 bg-white text-black mb-2" key={title.id}>{title.title}</li>
                 ))}
             </ul>
         </section>
